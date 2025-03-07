@@ -1,9 +1,11 @@
 // VARIABLES
 const myLibrary = [];
 const library = document.getElementById('library');
+
 const addBookButton = document.getElementById('add-book');
 const dialog = document.querySelector('dialog');
 const form = document.querySelector('form');
+const closeFormButton = document.querySelector('svg');
 
 // EVENT LISTENERS
 addBookButton.addEventListener('click', () => dialog.showModal());
@@ -15,6 +17,8 @@ form.addEventListener('submit', e => {
     addBookToLibrary(data.get('title'), data.get('author'), data.get('pages'), data.get('read'));
     dialog.close();
 });
+
+closeFormButton.addEventListener('click', () => dialog.close())
 
 // FUNCTIONS
 function Book(title, author, pages, read) {
