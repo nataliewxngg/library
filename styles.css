@@ -3,6 +3,52 @@
     text-align: center;
 }
 
+* {
+    margin: 0;
+    padding: 0; 
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: lightgray;
+    padding: 1rem 2rem;
+    margin: 0 0 1rem 0;
+}
+
+header button {
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+dialog {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2rem;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+form input {
+    padding: 0.2rem;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+form button {
+    padding: 0.3rem 1.5rem;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
 #library {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));

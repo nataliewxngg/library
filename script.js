@@ -1,5 +1,15 @@
+// VARIABLES
 const myLibrary = [];
+const library = document.getElementById('library');
+const addBook = document.getElementById('add-book');
+const dialog = document.querySelector('dialog');
 
+// EVENT LISTENERS
+addBook.addEventListener('click', () => {
+    dialog.showModal();
+});
+
+// FUNCTIONS
 function Book(title, author, pages, read) {
     this.title = title;
     this.author = author;
@@ -12,6 +22,7 @@ function addBookToLibrary(title, author, pages, read) {
     myLibrary.push(new Book(title, author, pages, read));
 }
 
+// MAIN
 addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', 295, true);
 addBookToLibrary('Mind Games', 'Nora Roberts', 421, false);
 addBookToLibrary('Chi\'s Sweet Adventures Vol. 3', 'Konami Kanata', 88, true);
@@ -19,10 +30,8 @@ addBookToLibrary('Erased Vol. 1', 'Kei Sanbe', 392, false);
 console.log(myLibrary);
 
 // display each book in the library
-const library = document.getElementById('library');
 
 for (let book of myLibrary) {
-
     // create a card for each book
     const bookCard = document.createElement('div');
     bookCard.classList.add('book');
