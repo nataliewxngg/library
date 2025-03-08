@@ -18,7 +18,7 @@ form.addEventListener('submit', e => {
     dialog.close();
 });
 
-closeFormButton.addEventListener('click', () => dialog.close())
+closeFormButton.addEventListener('click', () => dialog.close());
 
 // FUNCTIONS
 function Book(title, author, pages, read) {
@@ -42,15 +42,45 @@ function addBookToLibrary(title, author, pages, read) {
 
     const descriptionText = document.createElement('p');
 
+    const removeBookButton = document.createElement('button');
+
     titleText.textContent = title;
     authorText.textContent = author;
     descriptionText.textContent = `Pages: ${pages} | ${read ? 'Read' : 'Unread'}`;
+    removeBookButton.textContent = 'Remove Book';
+    removeBookButton.classList.add('remove-book');
+
+    bookCard.setAttribute('id', myLibrary[myLibrary.length - 1].id);
+    removeBookButton.setAttribute('id', myLibrary[myLibrary.length - 1].id);
 
     // update the DOM with the new card
     bookCard.appendChild(titleText);
     bookCard.appendChild(authorText);
     bookCard.appendChild(descriptionText);
+    bookCard.appendChild(removeBookButton);
     library.appendChild(bookCard);
+    // update the list of .remove-book buttons
+
+    removeBookButton.addEventListener('click', (e) => {
+        console.log(e.target.parentElement.id);
+        console.log(myLibrary[0].id);
+
+        // remove the book from myLibrary array
+        for (let book in myLibrary) {
+            if (myLibrary[book].id === e.target.parentElement.id) {
+                myLibrary.splice(book, 1);
+                break;
+            }
+        }
+
+        // remove the book card from the DOM
+        e.target.parentElement.remove();
+    });
 }
 
 // MAIN
+addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', 295, true);
+addBookToLibrary('Mind Games', 'Nora Roberts', 421, false);
+addBookToLibrary('Chi\'s Sweet Adventures Vol. 3', 'Konami Kanata', 88, true);
+addBookToLibrary('Erased Vol. 1', 'Kei Sanbe', 392, false);
+console.log(myLibrary);
