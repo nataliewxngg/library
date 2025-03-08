@@ -1,4 +1,13 @@
 :root {
+    --primary-color: #c8b3a6;
+    --secondary-color: #faf5ed;
+    --read-color: #d9edc9;
+    --unread-color: #eac5c5;
+
+    --semi-bold: 600;
+
+    --button-bradius: 40px;
+
     font-family: "Inter", sans-serif;
     text-align: center;
 }
@@ -9,21 +18,39 @@
     box-sizing: border-box;
 }
 
+button {
+    font-weight: var(--semi-bold);
+    border-radius: var(--button-bradius);
+
+    /* box shadow copied from https://getcssscan.com/css-box-shadow-examples (#0) */
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+/* header styles */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: lightgray;
-    padding: 1rem 2rem;
-    margin: 0 0 1rem 0;
-}
 
-header button {
-    padding: 1rem 2rem;
-    border-radius: 10px;
     border: 1px solid black;
+    padding: 1rem 2rem;
 }
 
+header h1 {
+    text-transform: lowercase;
+}
+
+button#add-book {
+    background-color: var(--primary-color);
+    padding: 1rem 2rem;
+    border: none;
+}
+
+button#add-book:focus {
+    outline: none;
+}
+
+/* main styles */
 dialog {
     left: 50%;
     top: 50%;
@@ -49,7 +76,7 @@ form button {
     border: 1px solid black;
 }
 
-#library {
+main {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     text-align: center;

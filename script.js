@@ -1,6 +1,6 @@
 // VARIABLES
 const myLibrary = [];
-const library = document.getElementById('library');
+const library = document.querySelector('main');
 
 const addBookButton = document.getElementById('add-book');
 const dialog = document.querySelector('dialog');
