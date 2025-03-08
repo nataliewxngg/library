@@ -29,6 +29,10 @@ function Book(title, author, pages, read) {
     this.id = crypto.randomUUID();
 }
 
+Book.prototype.changeReadStatus = function() {
+    this.read = !this.read;
+};
+
 function addBookToLibrary(title, author, pages, read) {
     myLibrary.push(new Book(title, author, pages, read));
 
@@ -43,12 +47,15 @@ function addBookToLibrary(title, author, pages, read) {
     const descriptionText = document.createElement('p');
 
     const removeBookButton = document.createElement('button');
+    const changeReadButton = document.createElement('button');
 
     titleText.textContent = title;
     authorText.textContent = author;
     descriptionText.textContent = `Pages: ${pages} | ${read ? 'Read' : 'Unread'}`;
     removeBookButton.textContent = 'Remove Book';
     removeBookButton.classList.add('remove-book');
+    changeReadButton.textContent = 'Change Read Status';
+    changeReadButton.classList.add('change-read-status');
 
     bookCard.setAttribute('id', myLibrary[myLibrary.length - 1].id);
     removeBookButton.setAttribute('id', myLibrary[myLibrary.length - 1].id);
@@ -58,13 +65,10 @@ function addBookToLibrary(title, author, pages, read) {
     bookCard.appendChild(authorText);
     bookCard.appendChild(descriptionText);
     bookCard.appendChild(removeBookButton);
+    bookCard.appendChild(changeReadButton);
     library.appendChild(bookCard);
-    // update the list of .remove-book buttons
 
     removeBookButton.addEventListener('click', (e) => {
-        console.log(e.target.parentElement.id);
-        console.log(myLibrary[0].id);
-
         // remove the book from myLibrary array
         for (let book in myLibrary) {
             if (myLibrary[book].id === e.target.parentElement.id) {
@@ -72,9 +76,20 @@ function addBookToLibrary(title, author, pages, read) {
                 break;
             }
         }
-
         // remove the book card from the DOM
         e.target.parentElement.remove();
+    });
+
+    changeReadButton.addEventListener('click', (e) => {
+        for (let book in myLibrary) {
+            if (myLibrary[book].id === e.target.parentElement.id) {
+                myLibrary[book].changeReadStatus();
+
+                descriptionText.textContent = `Pages: ${myLibrary[book].pages} | ${myLibrary[book].read ? 'Read' : 'Unread'}`;
+                
+                break;
+            }
+        }
     });
 }
 
