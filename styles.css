@@ -1,12 +1,15 @@
 :root {
     --primary-color: #c8b3a6;
     --secondary-color: #faf5ed;
+    --neutral-color: #d9d9d9;
     --read-color: #d9edc9;
     --unread-color: #eac5c5;
 
     --semi-bold: 600;
 
     --button-bradius: 40px;
+    --card-bradius: 20px;
+    --input-bradius: 15px;
 
     font-family: "Inter", sans-serif;
     text-align: center;
@@ -26,13 +29,15 @@ button {
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
 /* header styles */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    border: 1px solid black;
     padding: 1rem 2rem;
 }
 
@@ -46,36 +51,73 @@ button#add-book {
     border: none;
 }
 
-button#add-book:focus {
-    outline: none;
-}
-
-/* main styles */
+/* dialog styles */
 dialog {
+    /* center the dialog */
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+
     padding: 2rem;
-    border: 1px solid black;
-    border-radius: 5px;
+    border: none;
+    border-radius: var(--card-bradius);
 }
 
-dialog::backdrop {
-    background-color: rgba(0, 0, 0, 0.5);
+dialog[open] {
+    display: flex;
+    flex-direction: column;
+}
+
+dialog[open] svg {
+    width: 2rem;
+    align-self: end;
+    margin-bottom: 0.5rem;
+}
+dialog[open] svg:hover { cursor: pointer; }
+
+dialog::backdrop { background-color: rgba(0, 0, 0, 0.5); }
+
+form {
+    padding: 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
 }
 
 form input {
-    padding: 0.2rem;
-    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    border-radius: var(--input-bradius);
     border: 1px solid black;
+    position: relative;
 }
+
+form input[type="checkbox"] { 
+    accent-color: black;
+    width: 1rem;
+    height: 1rem;
+}
+
+form p:nth-child(4) {
+    display: flex;
+    gap: 1rem;
+
+    justify-content: center;
+    align-items: center;
+}
+
+dialog[open] form label { font-size: 1.1rem; }
+form input[type="checkbox"]:hover, form label:hover { cursor: pointer; }
 
 form button {
-    padding: 0.3rem 1.5rem;
-    border-radius: 5px;
-    border: 1px solid black;
+    padding: 0.8rem 1rem;
+    margin-top: 1rem;
+    background-color: var(--neutral-color);
+    width: 80%;
+    border: none;
 }
 
+/* main styles */
 main {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
