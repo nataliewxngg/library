@@ -1,6 +1,8 @@
 // VARIABLES
 const READ_COLOR = '#d9edc9';
+const READ_SHADE = '#bbde9e';
 const UNREAD_COLOR = '#eac5c5';
+const UNREAD_SHADE = '#dca8a8';
 
 const myLibrary = [];
 const library = document.querySelector('main');
@@ -71,7 +73,7 @@ function addBookToLibrary(title, author, pages, read) {
     bookCard.appendChild(cardButtons);
     library.appendChild(bookCard);
 
-    removeButton.addEventListener('click', (e) => {
+    removeButton.addEventListener('click', e => {
         // remove the book from myLibrary array
         myLibrary.splice(myLibrary.indexOf(newBook), 1);
 
@@ -79,12 +81,15 @@ function addBookToLibrary(title, author, pages, read) {
         e.target.parentElement.parentElement.remove();
     });
 
-    readButton.addEventListener('click', (e) => {
+    readButton.addEventListener('click', e => {
         newBook.changeReadStatus();
 
         readButton.textContent = newBook.read ? 'Read' : 'Unread';
         readButton.style.backgroundColor = newBook.read ? READ_COLOR : UNREAD_COLOR;
     });
+
+    readButton.addEventListener('mouseover', e => readButton.style.backgroundColor = newBook.read ? READ_SHADE : UNREAD_SHADE);
+    readButton.addEventListener('mouseout', e => readButton.style.backgroundColor = newBook.read ? READ_COLOR : UNREAD_COLOR);  
 }
 
 // MAIN

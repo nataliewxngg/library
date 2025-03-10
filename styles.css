@@ -1,7 +1,9 @@
 :root {
     --primary-color: #c8b3a6;
+    --primary-shade: #a89588;
     --secondary-color: #faf5ed;
     --neutral-color: #d9d9d9;
+    --neutral-shade: #bcbcbc;
 
     --semi-bold: 600;
     --medium: 500;
@@ -37,6 +39,7 @@ button {
 
     box-shadow: var(--light-bshadow);
     color: black;
+    transition: 800ms;
 }
 
 select {
@@ -71,6 +74,8 @@ button#add-book {
     padding: 1rem 2rem;
     border: none;
 }
+
+button#add-book:hover { background-color: var(--primary-shade); }
 
 /* dialog styles */
 dialog {
@@ -138,6 +143,8 @@ form button {
     border: none;
 }
 
+form button:hover { background-color: var(--neutral-shade); }
+
 /* main styles */
 main {
     display: grid;
@@ -184,9 +191,8 @@ main {
     padding: 1rem 1.5rem;
 }
 
-.book #remove-button {
-    background-color: var(--neutral-color);
-}
+.book #remove-button { background-color: var(--neutral-color); }
+.book #remove-button:hover { background-color: var(--neutral-shade); }
 
 /* footer styles */
 footer {
@@ -202,8 +208,10 @@ footer a {
     gap: 0.5rem;
     text-decoration: none;
     color: black;
+    transition: 500ms;
 }
 
-footer h1 { font-size: 1.2rem; }
+footer a:hover { transform: scale(1.05); }
 
+footer h1 { font-size: 1.2rem; }
 footer svg { width: 1.7rem; }
