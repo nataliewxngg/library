@@ -36,6 +36,7 @@ button {
     border-radius: var(--button-bradius);
 
     box-shadow: var(--light-bshadow);
+    color: blakc;
 }
 
 button:hover {
@@ -165,6 +166,7 @@ main {
 .book p {
     font-weight: var(--regular);
     margin: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .book div {
