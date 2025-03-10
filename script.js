@@ -44,18 +44,19 @@ function addBookToLibrary(title, author, pages, read) {
     const titleText = document.createElement('h1');
     const authorText = document.createElement('h2');
 
-    const descriptionText = document.createElement('p');
+    const pagesText = document.createElement('p');
 
+    const cardButtons = document.createElement('div');
     const removeBookButton = document.createElement('button');
     const changeReadButton = document.createElement('button');
 
     titleText.textContent = title;
-    authorText.textContent = author;
-    descriptionText.textContent = `Pages: ${pages} | ${read ? 'Read' : 'Unread'}`;
-    removeBookButton.textContent = 'Remove Book';
-    removeBookButton.classList.add('remove-book');
+    authorText.textContent = `by ${author}`;
+    pagesText.textContent = `${pages} pages`;
     changeReadButton.textContent = 'Change Read Status';
-    changeReadButton.classList.add('change-read-status');
+    changeReadButton.classList.add('read-button');
+    removeBookButton.textContent = 'Remove';
+    removeBookButton.classList.add('remove-button');
 
     bookCard.setAttribute('id', myLibrary[myLibrary.length - 1].id);
     removeBookButton.setAttribute('id', myLibrary[myLibrary.length - 1].id);
@@ -63,9 +64,10 @@ function addBookToLibrary(title, author, pages, read) {
     // update the DOM with the new card
     bookCard.appendChild(titleText);
     bookCard.appendChild(authorText);
-    bookCard.appendChild(descriptionText);
-    bookCard.appendChild(removeBookButton);
-    bookCard.appendChild(changeReadButton);
+    bookCard.appendChild(pagesText);
+    cardButtons.appendChild(changeReadButton);
+    cardButtons.appendChild(removeBookButton);
+    bookCard.appendChild(cardButtons);
     library.appendChild(bookCard);
 
     removeBookButton.addEventListener('click', (e) => {
@@ -85,7 +87,7 @@ function addBookToLibrary(title, author, pages, read) {
             if (myLibrary[book].id === e.target.parentElement.id) {
                 myLibrary[book].changeReadStatus();
 
-                descriptionText.textContent = `Pages: ${myLibrary[book].pages} | ${myLibrary[book].read ? 'Read' : 'Unread'}`;
+                pagesText.textContent = `Pages: ${myLibrary[book].pages} | ${myLibrary[book].read ? 'Read' : 'Unread'}`;
                 
                 break;
             }
