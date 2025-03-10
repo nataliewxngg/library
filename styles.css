@@ -171,3 +171,22 @@ main {
 .book .read-button {
     /* needs js */
 }
+
+/* footer styles */
+footer {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+}
+
+footer a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: black;
+}
+
+footer h1 { font-size: 1.2rem; }
+
+footer svg { width: 1.7rem; }
