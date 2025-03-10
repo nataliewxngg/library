@@ -36,7 +36,11 @@ button {
     border-radius: var(--button-bradius);
 
     box-shadow: var(--light-bshadow);
-    color: blakc;
+    color: black;
+}
+
+select {
+    color: black;
 }
 
 button:hover {
