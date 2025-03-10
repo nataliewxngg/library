@@ -2,8 +2,6 @@
     --primary-color: #c8b3a6;
     --secondary-color: #faf5ed;
     --neutral-color: #d9d9d9;
-    --read-color: #d9edc9;
-    --unread-color: #eac5c5;
 
     --semi-bold: 600;
     --medium: 500;
@@ -172,16 +170,16 @@ main {
 .book div {
     display: flex;
     justify-content: center;
+    gap: 0.5rem;
 }
 
-.book .remove-button {
+.book button {
     border: none;
-    background-color: var(--neutral-color);
     padding: 1rem 1.5rem;
 }
 
-.book .read-button {
-    /* needs js */
+.book #remove-button {
+    background-color: var(--neutral-color);
 }
 
 /* footer styles */

@@ -1,4 +1,7 @@
 // VARIABLES
+const READ_COLOR = '#d9edc9';
+const UNREAD_COLOR = '#eac5c5';
+
 const myLibrary = [];
 const library = document.querySelector('main');
 
@@ -34,7 +37,8 @@ Book.prototype.changeReadStatus = function() {
 };
 
 function addBookToLibrary(title, author, pages, read) {
-    myLibrary.push(new Book(title, author, pages, read));
+    const newBook = new Book(title, author, pages, read);
+    myLibrary.push(newBook);
 
     // create a card for the new book
     const bookCard = document.createElement('div');
@@ -43,55 +47,43 @@ function addBookToLibrary(title, author, pages, read) {
     // add content to the card
     const titleText = document.createElement('h1');
     const authorText = document.createElement('h2');
-
     const pagesText = document.createElement('p');
-
-    const cardButtons = document.createElement('div');
-    const removeBookButton = document.createElement('button');
-    const changeReadButton = document.createElement('button');
-
     titleText.textContent = title;
     authorText.textContent = `by ${author}`;
     pagesText.textContent = `${pages} pages`;
-    changeReadButton.textContent = 'Change Read Status';
-    changeReadButton.classList.add('read-button');
-    removeBookButton.textContent = 'Remove';
-    removeBookButton.classList.add('remove-button');
 
-    bookCard.setAttribute('id', myLibrary[myLibrary.length - 1].id);
-    removeBookButton.setAttribute('id', myLibrary[myLibrary.length - 1].id);
+    const cardButtons = document.createElement('div');
+    const removeButton = document.createElement('button');
+    removeButton.setAttribute('id', 'remove-button');
+    const readButton = document.createElement('button');
+    readButton.setAttribute('id', 'read-button');
+
+    readButton.textContent = read ? 'Read' : 'Unread';;
+    readButton.style.backgroundColor = read ? READ_COLOR : UNREAD_COLOR;
+    removeButton.textContent = 'Remove';
 
     // update the DOM with the new card
     bookCard.appendChild(titleText);
     bookCard.appendChild(authorText);
     bookCard.appendChild(pagesText);
-    cardButtons.appendChild(changeReadButton);
-    cardButtons.appendChild(removeBookButton);
+    cardButtons.appendChild(readButton);
+    cardButtons.appendChild(removeButton);
     bookCard.appendChild(cardButtons);
     library.appendChild(bookCard);
 
-    removeBookButton.addEventListener('click', (e) => {
+    removeButton.addEventListener('click', (e) => {
         // remove the book from myLibrary array
-        for (let book in myLibrary) {
-            if (myLibrary[book].id === e.target.parentElement.id) {
-                myLibrary.splice(book, 1);
-                break;
-            }
-        }
+        myLibrary.splice(myLibrary.indexOf(newBook), 1);
+
         // remove the book card from the DOM
         e.target.parentElement.parentElement.remove();
     });
 
-    changeReadButton.addEventListener('click', (e) => {
-        for (let book in myLibrary) {
-            if (myLibrary[book].id === e.target.parentElement.id) {
-                myLibrary[book].changeReadStatus();
+    readButton.addEventListener('click', (e) => {
+        newBook.changeReadStatus();
 
-                pagesText.textContent = `Pages: ${myLibrary[book].pages} | ${myLibrary[book].read ? 'Read' : 'Unread'}`;
-                
-                break;
-            }
-        }
+        readButton.textContent = newBook.read ? 'Read' : 'Unread';
+        readButton.style.backgroundColor = newBook.read ? READ_COLOR : UNREAD_COLOR;
     });
 }
 
