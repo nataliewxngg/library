@@ -79,7 +79,7 @@ function addBookToLibrary(title, author, pages, read) {
             }
         }
         // remove the book card from the DOM
-        e.target.parentElement.remove();
+        e.target.parentElement.parentElement.remove();
     });
 
     changeReadButton.addEventListener('click', (e) => {

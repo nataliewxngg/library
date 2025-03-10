@@ -27,6 +27,12 @@
     box-sizing: border-box;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 button {
     font-weight: var(--semi-bold);
     border-radius: var(--button-bradius);
@@ -42,11 +48,15 @@ button:hover {
 header {
     display: flex;
     justify-content: space-between;
+    background-color: white;
     align-items: center;
     padding: 1rem 2rem;
 
     position: relative;
     box-shadow: var(--dark-bshadow);
+
+    position: sticky;
+    top: 0;
 }
 
 header h1 {
@@ -133,6 +143,8 @@ main {
     
     padding: 2rem;
     gap: 2rem;
+
+    flex: 1;
 }
 
 .book {
@@ -177,6 +189,7 @@ footer {
     display: flex;
     justify-content: center;
     padding: 1rem;
+    box-shadow: var(--dark-bshadow);
 }
 
 footer a {
