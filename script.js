@@ -26,17 +26,17 @@ form.addEventListener('submit', e => {
 closeFormButton.addEventListener('click', () => dialog.close());
 
 // FUNCTIONS
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.id = crypto.randomUUID();
-}
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+        this.id = crypto.randomUUID();
+    }
 
-Book.prototype.changeReadStatus = function() {
-    this.read = !this.read;
-};
+    changeReadStatus() { this.read = !this.read; }
+}
 
 function addBookToLibrary(title, author, pages, read) {
     const newBook = new Book(title, author, pages, read);
